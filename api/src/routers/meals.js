@@ -13,14 +13,12 @@ mealsRouter.get(`/${domain}`, async(req,res) => {
 });
 
 mealsRouter.get(`/${domain}/:id`, async(req,res) => {
-    console.log("idddddddddddddddddddddddddddddddddddddddd", req.params);
   const meals_by_id = await knexInstance.select().from(table_meal).where('id', req.params.id)
     res.status(StatusCodes.OK).json(meals_by_id)
 });
 
 mealsRouter.post(`/${domain}`, async(req, res) => {
     console.log(req.body);
-    
     const save_meal = await knexInstance.insert(req.body).into(table_meal);
       res.status(StatusCodes.CREATED).send({save_meal})
       
