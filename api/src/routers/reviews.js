@@ -26,25 +26,26 @@ reviewRouter.post(`/${domain}`, async (req, res) => {
   res.status(StatusCodes.CREATED).send({ new_review });
 });
 
+reviewRouter.delete(`/${domain}/:id`, async (req, res) => {
+  const delete_review_by_id = await knexInstance
+    .del()
+    .from(table_review)
+    .where("id", req.params.id);
+  if (delete_review_by_id == 1) {
+    res.status(200).send("Successfully deleted.");
+  } else {
+    res.status(400).send("unable to delete");
+  }
+});
 
-reviewRouter.delete(`/${domain}/:id`, async(req,res) => {
-    const delete_review_by_id = await knexInstance.del().from(table_review).where('id', req.params.id)
-    if(delete_review_by_id == 1){
-      res.status(200).send("Successfully deleted.")
-    }else{
-      res.status(400).send("unable to delete")
-    }
-     
-  });
-
-  reviewRouter.put(`/${domain}/:id`, async(req,res) => {
-    const update_review = await knexInstance
-    .update( req.body )
-    .from(table_review).where('id', req.params.id);
-    if(update_review == 1){
-      res.status(200).send("Successfully updated.")
-    }else{
-      res.status(400).send("unable to update")
-    }
-     
-  });
+reviewRouter.put(`/${domain}/:id`, async (req, res) => {
+  const update_review = await knexInstance
+    .update(req.body)
+    .from(table_review)
+    .where("id", req.params.id);
+  if (update_review == 1) {
+    res.status(200).send("Successfully updated.");
+  } else {
+    res.status(400).send("unable to update");
+  }
+});

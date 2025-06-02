@@ -47,22 +47,18 @@ mealsRouter.get(`/${domain}`, async (req, res) => {
     if (sortby_dateBefore) {
       query.where("when", "<", sortby_dateBefore);
     }
-  }
-  else if ("limit" in req.query) {
+  } else if ("limit" in req.query) {
     const sortby_limit = req.query.limit.toString();
     if (sortby_limit) {
       query.limit(sortby_limit);
     }
-  }
-  
-  else if ("sortKey" in req.query && "sortDir" in req.query) {
+  } else if ("sortKey" in req.query && "sortDir" in req.query) {
     const sortKey = req.query.sortKey.toString();
     const sortDir = req.query.sortDir.toString();
     if (sortKey && sortDir) {
-      query.orderBy(sortKey,sortDir);
+      query.orderBy(sortKey, sortDir);
     }
-  }
-  else if ("sortKey" in req.query) {
+  } else if ("sortKey" in req.query) {
     const sortKey = req.query.sortKey.toString();
     if (sortKey) {
       query.orderBy(sortKey);
@@ -76,7 +72,7 @@ mealsRouter.get(`/${domain}`, async (req, res) => {
     res.json({ data });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500);
   }
 });
 
@@ -106,12 +102,12 @@ mealsRouter.delete(`/${domain}/:id`, async (req, res) => {
   }
 });
 mealsRouter.put(`/${domain}/:id`, async (req, res) => {
-  const update_meals = await knexInstance
+  const updateMeals = await knexInstance
     .update(req.body)
     .from(table_meal)
     .where("id", req.params.id);
-  res.status(StatusCodes.OK).json(update_meals);
-  if (update_meals == 1) {
+  res.status(StatusCodes.OK).json(updateMeals);
+  if (updateMeals == 1) {
     res.status(200).send("Successfully updated.");
   } else {
     res.status(400).send("unable to update");
