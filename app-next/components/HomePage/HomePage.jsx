@@ -1,17 +1,28 @@
-import HYFLogo from "@/assets/hyf.svg";
-import Image from "next/image";
+"use client";
 import "./HomePage.css";
+import MealList from "../MealsList/MealList";
+import { useEffect, useState } from "react";
 
 // Feel free to replace the content of this component with your own
 function HomePage() {
+  const [meals, setMeals] = useState([]);
+
+ useEffect(() => {
+  const response = fetch("http://localhost:3000/meals")
+    .then(res => res.json())
+    .then(data => {
+      setMeals(data.meals);
+    })
+    .catch(err => {
+      console.error("Failed to fetch meals:", err);
+    });
+}, []);
+
+
+
   return (
     <>
-      <a href="https://www.hackyourfuture.dk/" target="_blank" className="link">
-        <Image src={HYFLogo.src} width={HYFLogo.width} height={HYFLogo.height} className="logo" />
-      </a>
-      <a href="/nested" className="link">
-        <span className="message">Go to the nested page</span>
-      </a>
+    <MealList meals={meals}/>
     </>
   );
 }
