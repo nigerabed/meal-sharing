@@ -1,8 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body,
-#root {
+*{
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
+ box-sizing: border-box;
+}
+body{
+  background-color: rgba(191, 183, 183, 0.803);
 }
