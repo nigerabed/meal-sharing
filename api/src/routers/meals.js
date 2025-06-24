@@ -68,8 +68,8 @@ mealsRouter.get(`/${domain}`, async (req, res) => {
   console.log("SQL", query.toSQL().sql);
 
   try {
-    const data = await query;
-    res.json({ data });
+    const meals = await query;
+    res.json({ meals });
   } catch (e) {
     console.error(e);
     res.status(500);
