@@ -1,13 +1,27 @@
-export default function MealList({ meals }) {
+import { useEffect, useState } from "react";
+import Meal from "../Meal/Meal";
+import styles from "./mealList.module.css";
+import api from "../../utils/api";
+export default function MealList( ) {
+
+   const [meals, setMeals] = useState([]);
+  
+    useEffect(() => {
+      const response = fetch(api("/meals"))
+        .then((res) => res.json())
+        .then((data) => {
+          setMeals(data.meals);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch meals:", err);
+        });
+    }, []);
+
   return (
-    <div className="meal-list">
-      {meals.map((meal) => (
-        <div key={meal.id} className="meal-item">
-          <h3>{meal.name}</h3>
-          <p>{meal.description}</p>
-          <p>Price: ${meal.price}</p>
-        </div>
-      ))}
+    <div className={styles.mealListContainer}>
+      {meals.map((meal) => {
+        return <div className={styles.mealList} key={meal.id}>{<Meal meal={meal} />}</div>;
+      })}
     </div>
   );
 }
