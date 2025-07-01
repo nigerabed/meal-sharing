@@ -1,0 +1,34 @@
+.header{
+    background-color: rgb(84, 84, 84);
+    height: 5em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3em;
+    margin-bottom: 2em;
+}
+.logo{
+    font-size: 1.8em;
+    font-weight: 600;
+    color: rgb(100, 100, 99);
+    font-style: italic;
+    background-color: burlywood;
+    border-radius: 50%;
+    height: 1.8em;
+    width: 7em;
+    padding: .3em .5em;
+    text-align: center;
+}
+.headerNav {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: rgba(244, 223, 223, 0.732);
+}
+.headerNav li {
+  list-style-type: none;
+}

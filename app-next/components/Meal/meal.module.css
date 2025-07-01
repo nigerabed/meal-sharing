@@ -1,0 +1,36 @@
+.mealContainer{
+    border: 2px solid black;
+    width: 15em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: beige;
+    border-radius: .5em;
+    transition: transform 0.3s;
+}
+.mealContainer:hover{
+     transform: scale(1.1);
+}
+.mealImg{
+    width: 100%;
+}
+.mealImg img{
+    width:100%;
+    object-fit: cover;
+}
+.mealTitle{
+    font-size: 2em;
+    margin: .5em 0em;
+}
+.mealDescription{
+    font-size: 1em;
+}
+.mealPrice{
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: .5em;
+}
+.divContent{
+    padding: 1em;
+}
