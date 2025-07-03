@@ -1,0 +1,21 @@
+.text{
+    font-size: 1.1em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+.heading{
+    text-align: center;
+    color: rgb(50, 49, 49);
+    margin-bottom: 1em;
+}
+.moreMealsBtn{
+    height: 3em;
+    width: 8em;
+  border-radius: .5em;
+    font-size: 1.2em;
+  display: block;
+  margin: 0 auto;
+}
+.meals{
+    margin: 3em 0em;
+}

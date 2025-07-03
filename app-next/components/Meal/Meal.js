@@ -1,8 +1,10 @@
 import Image from "next/image";
 import styles from "./meal.module.css"
+import Link from "next/link";
 
 export default function Meal({meal}){ 
     return(
+      <Link href={`/meals/${meal.id}`}>
    <div key={meal.id} className={styles.mealContainer}>
       <div  className={styles.mealImg}>
         <Image
@@ -18,5 +20,6 @@ export default function Meal({meal}){
         <p className={styles.mealPrice}>Price: ${meal.price}</p>
       </div>
     </div>
+    </Link>
     )
 }

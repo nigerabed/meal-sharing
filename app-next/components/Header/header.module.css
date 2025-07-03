@@ -31,4 +31,6 @@
 }
 .headerNav li {
   list-style-type: none;
+  color: beige;
+  text-decoration:none;
 }

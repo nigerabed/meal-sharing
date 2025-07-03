@@ -8,6 +8,7 @@
     background-color: beige;
     border-radius: .5em;
     transition: transform 0.3s;
+    border: 1px solid grey;
 }
 .mealContainer:hover{
      transform: scale(1.1);
