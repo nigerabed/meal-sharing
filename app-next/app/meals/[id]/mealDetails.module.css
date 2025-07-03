@@ -1,0 +1,23 @@
+.mealDetailsDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+}
+
+.mealDetails{
+      border: 1px solid grey;
+}
+.mealDetails h1{
+    margin: .4em 0em;
+}
+.mealDetails p{
+    margin-bottom: 1em;
+    font-size: 1.1em;
+    padding: 1em;
+}
+.detailImage{
+    width: 100%;
+}
