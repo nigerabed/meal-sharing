@@ -19,3 +19,7 @@
 .meals{
     margin: 3em 0em;
 }
+.linkNoStyle {
+  text-decoration: none;
+  color: inherit;
+}

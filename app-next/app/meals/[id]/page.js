@@ -4,15 +4,43 @@ import api from "../../../utils/api";
 import Image from "next/image";
 import MealReservationForm from "../../../components/ReservationForm/ReservationForm";
 import styles from "./mealDetails.module.css";
+import { useParams } from "next/navigation";
+import MealReviewForm from "../../../components/Review/ReviewForm";
+import ReviewCard from "../../../components/Review/ReviewCard";
 
-export default function MealDetails({ params }) {
-  const id = params.id;
+export default function MealDetails() {
+  const { id } = useParams(); //iths is client component thats why i used hook- useParams().
+
   const [singleMeal, setSingleMeal] = useState(null);
+
+  const [reviewData, setReviewData] = useState([]);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  const fetchReview = async () => {
+    try {
+      const res = await fetch(api(`/reviews?mealId=${id}`));
+      const data = await res.json();
+      console.log("Review data:", data);
+      setReviewData(data);
+    } catch (err) {
+      console.error("Failed to fetch meal:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchReview();
+  }, [reloadKey]);
 
   const [availabeReservation, setAvailableReservation] = useState({
     number_of_guests: "10",
     meal_id: "1",
   });
+
+  const [showForm, setShowForm] = useState(false);
+
+  function handleReview() {
+    setShowForm((prev) => !prev);
+  }
 
   useEffect(() => {
     const fetchMeal = async () => {
@@ -51,6 +79,23 @@ export default function MealDetails({ params }) {
       ) : (
         ""
       )}
+
+      {/* <button onClick={handleReview}>Give a Review</button>
+      <MealReviewForm /> */}
+
+      <div className={styles.reviewButtonContainer}>
+        <button onClick={handleReview} className={styles.reviewButton}>
+          {showForm ? "Hide Review Form" : "Give a Review"}
+        </button>
+
+        {showForm && (
+          <MealReviewForm mealId={id} onReviewFormSubmit={fetchReview} />
+        )}
+      </div>
+      <h3 className={styles.heading}>Reviews:</h3>
+      {reviewData.map((review) => (
+        <ReviewCard review={review} key={review.id} />
+      ))}
     </>
   );
 }

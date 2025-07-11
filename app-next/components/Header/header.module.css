@@ -1,5 +1,5 @@
 .header{
-    background-color: rgb(84, 84, 84);
+    background-color:#1f2937;
     height: 5em;
     width: 100%;
     display: flex;
@@ -34,3 +34,9 @@
   color: beige;
   text-decoration:none;
 }
+.linkNoStyle {
+  text-decoration: none;
+  color: inherit;
+}
+
+

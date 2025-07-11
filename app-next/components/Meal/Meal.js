@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Meal({meal}){ 
     return(
-      <Link href={`/meals/${meal.id}`}>
+      <Link href={`/meals/${meal.id}`} className={styles.linkNoStyle}>
    <div key={meal.id} className={styles.mealContainer}>
       <div  className={styles.mealImg}>
         <Image

@@ -12,7 +12,7 @@ export default function Home() {
       <div className={styles.meals}>
         <MealList limit={3} />
       </div>
-      <Link href={"/meals"}>
+      <Link href={"/meals"} className={styles.linkNoStyle}>
        <button className={styles.moreMealsBtn}>More Meals</button>
       </Link>
      

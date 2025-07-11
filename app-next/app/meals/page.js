@@ -1,8 +1,11 @@
-"use client"
+
 import MealList from "../../components/MealsList/MealList";
 
-export default function Meals(){
+export default async function Meals({searchParams}) {
+const searchedMeal = await (searchParams).search || "";
+
+
     return(
-        <MealList/>
+        <MealList search = {searchedMeal}/>
     )
 }
