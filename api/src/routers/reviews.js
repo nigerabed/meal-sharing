@@ -8,8 +8,22 @@ const domain = "reviews";
 const table_review = "Review";
 
 reviewRouter.get(`/${domain}`, async (req, res) => {
-  const reviews = await knexInstance.select().from(table_review);
-  res.status(StatusCodes.OK).json(reviews);
+  let query = knexInstance.select().from(table_review);
+
+  if ("mealId" in req.query) {
+    const mealId = req.query.mealId.toString();
+    query.where("meal_id", "=", mealId);
+  }
+
+  console.log("SQL", query.toSQL().sql);
+
+  try {
+    const review = await query;
+    res.json( review );
+  } catch (e) {
+    console.error(e);
+    res.status(500);
+  }
 });
 
 reviewRouter.get(`/${domain}/:id`, async (req, res) => {
