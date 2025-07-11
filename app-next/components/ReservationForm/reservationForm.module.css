@@ -1,0 +1,60 @@
+.reservationForm {
+  max-width: 28rem;
+  margin: 0 auto;
+  background-color: rgb(239, 250, 208);
+  padding: 1.5rem;
+  border-radius: 0.75rem; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+
+.reservationForm h2 {
+  font-size: 1.5rem; 
+  font-weight: bold;
+  text-align: center;
+  color: #1f2937; 
+}
+
+.reservationForm label {
+  display: block;
+  font-size: 0.875rem; 
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+
+.reservationForm input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db; 
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); 
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.reservationForm input:focus {
+  border-color: #bfdbfe;
+  box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.5);
+}
+
+
+.reservationForm button {
+  width: 50%;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 2em;
+margin-left: 8em;
+}
+
+.reservationForm button:hover {
+  background-color: #1d4ed8; 
+}
