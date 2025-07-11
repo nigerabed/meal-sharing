@@ -3,7 +3,7 @@ import styles from "./review.module.css";
 import { useState } from "react";
 import api from "../../utils/api";
 
-export default function MealReviewForm({ mealId , onReviewFormSubmit}) {
+export default function MealReviewForm({ mealId, onReviewFormSubmit }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -13,7 +13,7 @@ export default function MealReviewForm({ mealId , onReviewFormSubmit}) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
   async function handleSubmit(e) {
@@ -37,32 +37,33 @@ export default function MealReviewForm({ mealId , onReviewFormSubmit}) {
     } catch (error) {
       console.error("Review submission failed", error);
     }
-
   }
-  return(
+  return (
     <form onSubmit={handleSubmit} className={styles.mealReviewForm}>
-  <h3>Leave a Review</h3>
+      <h3>Leave a Review</h3>
 
-  <input
-    type="text"
-    name="title"
-    value={formData.title}
-    onChange={handleChange}
-    placeholder="Review title"
-    required
-  />
+      <input
+        type="text"
+        name="title"
+        value={formData.title}
+        onChange={handleChange}
+        placeholder="Review title"
+        required
+      />
 
-  <textarea
-    name="description"
-    value={formData.description}
-    onChange={handleChange}
-    placeholder="Write your review..."
-    required
-  />
+      <textarea
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        placeholder="Write your review..."
+        required
+      />
 
-  <button type="submit">Submit Review</button>
+      <button type="submit">Submit Review</button>
 
-  {success && <p className={styles.successMessage}>Thank you for your review!</p>}
-</form>
-  )
-    }
+      {success && (
+        <p className={styles.successMessage}>Thank you for your review!</p>
+      )}
+    </form>
+  );
+}
