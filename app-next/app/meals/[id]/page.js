@@ -16,6 +16,13 @@ export default function MealDetails() {
   const [reviewData, setReviewData] = useState([]);
   const [reloadKey, setReloadKey] = useState(0);
 
+  const [availabeReservation, setAvailableReservation] = useState({
+    number_of_guests: "10",
+    meal_id: "1",
+  });
+
+  const [showForm, setShowForm] = useState(false);
+
   const fetchReview = async () => {
     try {
       const res = await fetch(api(`/reviews?mealId=${id}`));
@@ -30,13 +37,6 @@ export default function MealDetails() {
   useEffect(() => {
     fetchReview();
   }, [reloadKey]);
-
-  const [availabeReservation, setAvailableReservation] = useState({
-    number_of_guests: "10",
-    meal_id: "1",
-  });
-
-  const [showForm, setShowForm] = useState(false);
 
   function handleReview() {
     setShowForm((prev) => !prev);

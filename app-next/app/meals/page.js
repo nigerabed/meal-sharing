@@ -30,6 +30,7 @@ export default function Meals() {
       .then((res) => res.json())
       .then((data) => {
         if (search && search.trim() !== "") {
+
           data.meals = data.meals.filter((meal) =>
             meal.title.toLowerCase().includes(search.toLowerCase())
           );
@@ -46,7 +47,6 @@ export default function Meals() {
         console.error("Failed to fetch meals:", err);
       });
 
-    setMeals(meals);
   }
 
   useEffect(() => {
@@ -55,7 +55,9 @@ export default function Meals() {
   
   return (
     <>
-      {noMatchFound && noMatchFound}
+      <h1>Meals</h1>
+      <p>Explore our delicious meals</p>
+      {noMatchFound ? <p>{noMatchFound}</p> : null}
       <SortMeals onSortFetchData={fetchMeals} />
       <MealList meals={meals} search={search} />
     </>
