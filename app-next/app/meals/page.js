@@ -4,7 +4,7 @@ import MealList from "../../components/MealsList/MealList";
 import SortMeals from "../../components/SortMeals/SortMeals";
 import api from "../../utils/api";
 import { useSearchParams } from "next/navigation";
- 
+
 function MealsContent() {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
@@ -17,10 +17,8 @@ function MealsContent() {
 
   function fetchMeals(sortKey, sortDir) {
     let apiPath;
-
-    if (limit) {
-      apiPath = `/meals?limit=${limit}`;
-    } else if (sortKey || sortDir) {
+    
+    if (sortKey || sortDir) {
       apiPath = `/meals?sortKey=${sortKey}&sortDir=${sortDir}`;
     } else {
       apiPath = "/meals";
@@ -30,7 +28,6 @@ function MealsContent() {
       .then((res) => res.json())
       .then((data) => {
         if (search && search.trim() !== "") {
-
           data.meals = data.meals.filter((meal) =>
             meal.title.toLowerCase().includes(search.toLowerCase())
           );
@@ -46,13 +43,12 @@ function MealsContent() {
       .catch((err) => {
         console.error("Failed to fetch meals:", err);
       });
-
   }
 
   useEffect(() => {
     fetchMeals();
   }, [searchParams]);
-  
+
   return (
     <>
       <h1>Meals</h1>
@@ -63,7 +59,6 @@ function MealsContent() {
     </>
   );
 }
-
 
 export default function Meals() {
   return (
