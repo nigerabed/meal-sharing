@@ -1,5 +1,5 @@
 "use client";
-import styles from "./review.module.css";
+import styles from "./Review.module.css";
 import { useState } from "react";
 import api from "../../utils/api";
 
