@@ -9,7 +9,7 @@ import MealReviewForm from "../../../components/Review/ReviewForm";
 import ReviewCard from "../../../components/Review/ReviewCard";
 
 export default function MealDetails() {
-  const { id } = useParams(); //iths is client component thats why i used hook- useParams().
+  const { id } = useParams(); 
 
   const [singleMeal, setSingleMeal] = useState(null);
 
@@ -79,9 +79,6 @@ export default function MealDetails() {
       ) : (
         ""
       )}
-
-      {/* <button onClick={handleReview}>Give a Review</button>
-      <MealReviewForm /> */}
 
       <div className={styles.reviewButtonContainer}>
         <button onClick={handleReview} className={styles.reviewButton}>

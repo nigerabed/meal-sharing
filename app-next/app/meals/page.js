@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import MealList from "../../components/MealsList/MealList";
 import SortMeals from "../../components/SortMeals/SortMeals";
 import api from "../../utils/api";
 import { useSearchParams } from "next/navigation";
-
-export default function Meals() {
+ 
+function MealsContent() {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
 
@@ -61,5 +61,14 @@ export default function Meals() {
       <SortMeals onSortFetchData={fetchMeals} />
       <MealList meals={meals} search={search} />
     </>
+  );
+}
+
+
+export default function Meals() {
+  return (
+    <Suspense fallback={<div>Loading meals...</div>}>
+      <MealsContent />
+    </Suspense>
   );
 }
