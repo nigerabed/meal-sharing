@@ -1,11 +1,69 @@
-
+"use client";
+import { useEffect, useState, Suspense } from "react";
 import MealList from "../../components/MealsList/MealList";
+import SortMeals from "../../components/SortMeals/SortMeals";
+import api from "../../utils/api";
+import { useSearchParams } from "next/navigation";
 
-export default async function Meals({searchParams}) {
-const searchedMeal = await (searchParams).search || "";
+function MealsContent() {
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
 
+  const [noMatchFound, setNoMatchFound] = useState();
 
-    return(
-        <MealList search = {searchedMeal}/>
-    )
+  const [meals, setMeals] = useState([]);
+
+  let limit;
+
+  function fetchMeals(sortKey, sortDir) {
+    let apiPath;
+    
+    if (sortKey || sortDir) {
+      apiPath = `/meals?sortKey=${sortKey}&sortDir=${sortDir}`;
+    } else {
+      apiPath = "/meals";
+    }
+
+    fetch(api(apiPath))
+      .then((res) => res.json())
+      .then((data) => {
+        if (search && search.trim() !== "") {
+          data.meals = data.meals.filter((meal) =>
+            meal.title.toLowerCase().includes(search.toLowerCase())
+          );
+          // when no match found
+          if (data.meals.length == 0) {
+            setNoMatchFound("No result found for searchKey:" + search);
+          } else {
+            setNoMatchFound("");
+          }
+        }
+        setMeals(data.meals);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch meals:", err);
+      });
+  }
+
+  useEffect(() => {
+    fetchMeals();
+  }, [searchParams]);
+
+  return (
+    <>
+      <h1>Meals</h1>
+      <p>Explore our delicious meals</p>
+      {noMatchFound ? <p>{noMatchFound}</p> : null}
+      <SortMeals onSortFetchData={fetchMeals} />
+      <MealList meals={meals} search={search} />
+    </>
+  );
+}
+
+export default function Meals() {
+  return (
+    <Suspense fallback={<div>Loading meals...</div>}>
+      <MealsContent />
+    </Suspense>
+  );
 }

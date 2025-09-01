@@ -1,25 +1,25 @@
 import Image from "next/image";
-import styles from "./meal.module.css"
+import styles from "./meal.module.css";
 import Link from "next/link";
 
-export default function Meal({meal}){ 
-    return(
-      <Link href={`/meals/${meal.id}`} className={styles.linkNoStyle}>
-   <div key={meal.id} className={styles.mealContainer}>
-      <div  className={styles.mealImg}>
-        <Image
-          src={`/images/${meal.image || 'default.png'}`}
-          alt="Meal Image"
-          width={250}
-          height={200} 
-        />
+export default function Meal({ meal }) {
+  return (
+    <Link href={`/meals/${meal.id}`} className={styles.linkNoStyle}>
+      <div key={meal.id} className={styles.mealContainer}>
+        <div className={styles.mealImg}>
+          <Image
+            src={`/images/${meal.image || "default.png"}`}
+            alt="Meal Image"
+            width={250}
+            height={200}
+          />
+        </div>
+        <div className={styles.divContent}>
+          <h3 className={styles.mealTitle}>{meal.title}</h3>
+          <p className={styles.mealDescription}>{meal.description}</p>
+          <p className={styles.mealPrice}>Price: ${meal.price}</p>
+        </div>
       </div>
-      <div className={styles.divContent}>
-        <h3 className={styles.mealTitle}>{meal.title}</h3>
-        <p className={styles.mealDescription}>{meal.description}</p>
-        <p className={styles.mealPrice}>Price: ${meal.price}</p>
-      </div>
-    </div>
     </Link>
-    )
+  );
 }

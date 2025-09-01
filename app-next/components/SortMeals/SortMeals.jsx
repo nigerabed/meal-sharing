@@ -1,7 +1,19 @@
-export default function SortMeals() {
+"use client";
+
+import { useEffect, useState } from "react";
+import styles from "./SortMeals.module.css";
+
+export default function SortMeals({ onSortFetchData }) {
+  const [sortKey, setSortKey] = useState("title");
+  const [sortDir, setSortDir] = useState("asc");
+
+  useEffect(() => {
+    onSortFetchData(sortKey, sortDir);
+  }, [sortKey, sortDir]);
+
   return (
     <>
-      <div className="sort-controls">
+      <div className={styles.sortControls}>
         <label htmlFor="sortKey">Sort by:</label>
         <select
           id="sortKey"

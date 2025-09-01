@@ -9,12 +9,19 @@ import MealReviewForm from "../../../components/Review/ReviewForm";
 import ReviewCard from "../../../components/Review/ReviewCard";
 
 export default function MealDetails() {
-  const { id } = useParams(); //iths is client component thats why i used hook- useParams().
+  const { id } = useParams(); 
 
   const [singleMeal, setSingleMeal] = useState(null);
 
   const [reviewData, setReviewData] = useState([]);
   const [reloadKey, setReloadKey] = useState(0);
+
+  const [availabeReservation, setAvailableReservation] = useState({
+    number_of_guests: "10",
+    meal_id: "1",
+  });
+
+  const [showForm, setShowForm] = useState(false);
 
   const fetchReview = async () => {
     try {
@@ -30,13 +37,6 @@ export default function MealDetails() {
   useEffect(() => {
     fetchReview();
   }, [reloadKey]);
-
-  const [availabeReservation, setAvailableReservation] = useState({
-    number_of_guests: "10",
-    meal_id: "1",
-  });
-
-  const [showForm, setShowForm] = useState(false);
 
   function handleReview() {
     setShowForm((prev) => !prev);
@@ -79,9 +79,6 @@ export default function MealDetails() {
       ) : (
         ""
       )}
-
-      {/* <button onClick={handleReview}>Give a Review</button>
-      <MealReviewForm /> */}
 
       <div className={styles.reviewButtonContainer}>
         <button onClick={handleReview} className={styles.reviewButton}>

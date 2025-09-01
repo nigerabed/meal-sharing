@@ -1,0 +1,26 @@
+.sortControls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 1rem 2rem;
+}
+
+.sortControls label {
+  font-weight: bold;
+  color: #333;
+}
+
+.sortControls select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.sortControls select:hover {
+  border-color: #999;
+}
